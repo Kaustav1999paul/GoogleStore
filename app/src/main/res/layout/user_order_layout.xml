@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginBottom="10dp"
+android:background="@drawable/userlayout_background">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="90dp"
+            android:layout_height="80dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/nameOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/allerta"
+            android:text="Product Name"
+            android:textColor="#333333"
+
+            android:textSize="20dp"
+            app:layout_constraintStart_toEndOf="@+id/imageView6"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/priceOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Price"
+            android:textColor="#2196F3"
+            android:textSize="25dp"
+            app:layout_constraintStart_toStartOf="@+id/nameOrder"
+            app:layout_constraintTop_toBottomOf="@+id/nameOrder" />
+
+        <TextView
+            android:id="@+id/qty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="28dp"
+            android:text="Qty:"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toBottomOf="@+id/nameOrder"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/nameOrder"
+            app:layout_constraintVertical_bias="0.8" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/ordered"
+            android:layout_width="70dp"
+            android:layout_height="20dp"
+            android:gravity="center"
+            android:text="Ordered"/>
+        <TextView
+            android:id="@+id/shipped"
+            android:gravity="center"
+            android:layout_width="70dp"
+            android:layout_height="20dp"
+            android:text="Shipped"
+            android:visibility="invisible"/>
+        <TextView
+            android:id="@+id/ofd"
+            android:layout_width="wrap_content"
+            android:text="Out for Delivery"
+            android:gravity="center"
+            android:layout_height="20dp"
+            android:visibility="invisible"/>
+        <TextView
+            android:gravity="center"
+            android:id="@+id/delivered"
+            android:text="Delivered"
+            android:layout_width="70dp"
+            android:layout_height="20dp"
+            android:visibility="invisible"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="15dp"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/step1"
+            android:layout_width="6dp"
+            android:layout_height="9dp"
+            android:background="@drawable/st"/>
+        <ImageView
+            android:id="@+id/step2"
+            android:layout_width="70dp"
+            android:layout_height="10dp"
+            android:visibility="invisible"
+            android:background="@drawable/step"/>
+        <ImageView
+            android:id="@+id/step3"
+            android:layout_width="70dp"
+            android:layout_height="10dp"
+            android:visibility="invisible"
+            android:background="@drawable/step"/>
+        <ImageView
+            android:id="@+id/step4"
+            android:layout_width="70dp"
+            android:layout_height="10dp"
+            android:visibility="invisible"
+            android:background="@drawable/step"/>
+    </LinearLayout>
+</LinearLayout>

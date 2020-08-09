@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/home"
+            android:title="Home" />
+        <item
+            android:id="@+id/orders"
+            android:icon="@drawable/orders"
+            android:title="Orders" />
+        <item
+            android:id="@+id/account"
+            android:icon="@drawable/sett"
+            android:title="Account Settings" />
+        <item
+            android:id="@+id/help"
+            android:icon="@drawable/help"
+            android:title="Help" />
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/gmail"
+            android:icon="@drawable/gmail"
+            android:title="Open G-mail app" />
+        <item
+            android:id="@+id/map"
+            android:icon="@drawable/map"
+            android:title="Open Maps app" />
+    </group>
+
+</menu>

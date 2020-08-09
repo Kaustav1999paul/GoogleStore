@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/payment_background"
+    android:layout_margin="20dp"
+    android:elevation="10dp"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/comfortaa"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:layout_marginBottom="20dp"
+            android:textColor="#FF9800"
+            android:textStyle="bold"
+            android:layout_marginTop="40dp"
+            android:text="Payment method"/>
+
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="100dp"
+            android:layout_gravity="center"
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            android:background="#9A9A9A"
+            />
+
+        <LinearLayout
+            android:id="@+id/cod"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/cod"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:layout_gravity="center"
+                android:text="Cash on Delivery"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/razpay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:layout_marginBottom="40dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/razlogo"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:layout_gravity="center"
+                android:text=" Razorpay Online"/>
+        </LinearLayout>
+
+
+
+
+
+    </LinearLayout>
+</RelativeLayout>

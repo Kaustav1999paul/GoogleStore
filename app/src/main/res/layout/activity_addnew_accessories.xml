@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".AddNewProductActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/add_product_image"
+            android:layout_width="wrap_content"
+            android:layout_height="220dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ab" />
+
+        <EditText
+            android:id="@+id/add_price"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center"
+            android:hint="Add Price" />
+
+        <EditText
+            android:id="@+id/add_product_title"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:hint="Add Accessories Title" />
+
+        <EditText
+            android:id="@+id/add_product_key_feature"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:hint="Add accessories key features" />
+
+
+        <EditText
+            android:id="@+id/add_image_url"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:hint="Add Image URL"
+            />
+
+        <Button
+            android:id="@+id/add_product"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/admin_button"
+            android:elevation="10dp"
+            android:layout_marginTop="20dp"
+            android:text="Add Accessories"
+            android:layout_gravity="center"
+            android:textAllCaps="false"
+            android:layout_marginBottom="20dp"
+            android:textColor="#FFFFFF" />
+
+    </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
