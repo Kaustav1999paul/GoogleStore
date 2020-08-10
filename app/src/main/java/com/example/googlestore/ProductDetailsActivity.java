@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -25,6 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+import com.tapadoo.alerter.Alerter;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -197,6 +199,17 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()){
+                        // ++++++++++++++++++ To show the alert dialog +++++++++++++++
+                        Alerter.create(ProductDetailsActivity.this)
+                                .setTitle("Item added to cart")
+                                .setText("Please check your cart to proceed your payments")
+                                .setIcon(R.drawable.ic_round_check_circle)
+                                .setDuration(3000)
+                                .enableProgress(true)
+                                .setProgressColorRes(R.color.pro)
+                                .setBackgroundColorRes(R.color.proBack)
+                                .show();
+
                         cartListRef.child("Admin View").child(Prevalent.CurrentOnlineUser.getPhone()).child("Products").child(productID)
                                 .updateChildren(cartMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override

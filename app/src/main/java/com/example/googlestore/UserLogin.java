@@ -22,6 +22,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.tapadoo.alerter.Alerter;
 
 import Model.Users;
 import Prevalent.Prevalent;
@@ -85,11 +86,25 @@ public class UserLogin extends AppCompatActivity {
         String password = InputPassword.getText().toString();
 
         if (TextUtils.isEmpty(phone)){
-            Snackbar sb = Snackbar.make(view, "Phone field is empty", BaseTransientBottomBar.LENGTH_SHORT);
-            sb.show();
+            Alerter.create(this)
+                    .setTitle("Required")
+                    .setText("Phone field is empty")
+                    .setIcon(R.drawable.call)
+                    .setDuration(3000)
+                    .enableProgress(true)
+                    .setProgressColorRes(R.color.pro)
+                    .setBackgroundColorRes(R.color.login)
+                    .show();
         }else if (TextUtils.isEmpty(password)){
-            Snackbar sb = Snackbar.make(view, "Password field is empty", BaseTransientBottomBar.LENGTH_SHORT);
-            sb.show();
+            Alerter.create(this)
+                    .setTitle("Required")
+                    .setText("Password field is empty")
+                    .setIcon(R.drawable.lock)
+                    .setDuration(3000)
+                    .enableProgress(true)
+                    .setProgressColorRes(R.color.pro)
+                    .setBackgroundColorRes(R.color.login)
+                    .show();
         }else{
 //            loadingBar.setTitle("Please Wait");
             loadingBar.setMessage("We are checking your details");
@@ -125,15 +140,33 @@ public class UserLogin extends AppCompatActivity {
                             Intent intent = new Intent(UserLogin.this, HomeActivity.class);
                             startActivity(intent);
                         }else{
+//                           +++++++++++++++ Wrong password ++++++++++++++
                             loadingBar.dismiss();
-                            Snackbar sb = Snackbar.make(view, "Incorrect Password", BaseTransientBottomBar.LENGTH_SHORT);
-                            sb.show();
+                            Alerter.create(UserLogin.this)
+                                    .setTitle("Error")
+                                    .setText("Password is incorrect")
+                                    .setIcon(R.drawable.cross)
+                                    .setDuration(3000)
+                                    .enableProgress(true)
+                                    .setProgressColorRes(R.color.pro)
+                                    .setBackgroundColorRes(R.color.error)
+                                    .show();
                         }
                     }
                 }else {
                     loadingBar.dismiss();
                     Snackbar sb = Snackbar.make(view, phone+ " does not exist.", BaseTransientBottomBar.LENGTH_SHORT);
                     sb.show();
+
+                    Alerter.create(UserLogin.this)
+                            .setTitle(phone)
+                            .setText("Phone number dose't exist!")
+                            .setIcon(R.drawable.call)
+                            .setDuration(3000)
+                            .enableProgress(true)
+                            .setProgressColorRes(R.color.pro)
+                            .setBackgroundColorRes(R.color.error)
+                            .show();
                 }
             }
 

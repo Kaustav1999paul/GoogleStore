@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textSize="26dp"
+            android:textSize="23dp"
             android:textColor="#474747"
             android:text="Order Placed"
             android:layout_gravity="center"
@@ -36,13 +36,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textSize="15dp"
+            android:textSize="13dp"
             android:textColor="#000000"
             android:text="Your order is placed successfully. You can track your order in the order segment."
             android:layout_gravity="center"
             android:gravity="center"
-            android:paddingLeft="25dp"
-            android:paddingRight="25dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
             android:fontFamily="@font/comfortaa"/>
         <Button
             android:background="@drawable/ok_back"
@@ -53,8 +53,7 @@
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
             android:elevation="10dp"
-            android:layout_gravity="end"
-            android:layout_marginRight="20dp"
+            android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="30dp"/>
 

@@ -7,4 +7,11 @@
     <color name="R1">#FFFFFF</color>
     <color name="R2">#ec2c3b</color>
     <color name="R3">#D81B60</color>
+
+    <color name="pro">#673AB7</color>
+    <color name="proBack">#FF6C61</color>
+
+    <color name="login">#FF9800</color>
+
+    <color name="error">#FF3939</color>
 </resources>

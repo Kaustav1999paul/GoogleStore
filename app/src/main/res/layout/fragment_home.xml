@@ -72,6 +72,7 @@
                         <ImageView
                             android:id="@+id/personImage"
                             android:layout_width="50dp"
+                            android:scaleType="centerCrop"
                             android:layout_height="50dp"/>
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
