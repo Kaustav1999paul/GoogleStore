@@ -14,4 +14,8 @@
     <color name="login">#FF9800</color>
 
     <color name="error">#FF3939</color>
+
+    <color name="lightBack">#FFFFFF</color>
+    <color name="lightText">#292929</color>
+
 </resources>

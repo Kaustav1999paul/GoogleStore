@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="R1">#FFFFFF</color>
+    <color name="R2">#ec2c3b</color>
+    <color name="R3">#D81B60</color>
+
+    <color name="pro">#673AB7</color>
+    <color name="proBack">#FF6C61</color>
+
+    <color name="login">#FF9800</color>
+
+    <color name="error">#FF3939</color>
+
+    <color name="lightBack">#3A3A3A</color>
+    <color name="lightText">#FFFFFF</color>
+
+</resources>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@color/lightBack"
     tools:context=".OrdersFragment">
 
     <LinearLayout
@@ -27,15 +27,8 @@
                 android:fontFamily="@font/comfortaa"
                 android:paddingLeft="10dp"
                 android:text="Orders"
-                android:textColor="#000000"
+                android:textColor="@color/lightText"
                 android:textSize="25dp" />
-
-            <pl.droidsonroids.gif.GifImageView
-                android:layout_width="40dp"
-                android:layout_height="80dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:background="@drawable/shipp" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -54,7 +47,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/comfortaa"
         android:text="No order placed yet."
-        android:textColor="#000000"
+        android:textColor="@color/lightText"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout5"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout5"

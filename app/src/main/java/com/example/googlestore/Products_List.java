@@ -11,19 +11,27 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.HashMap;
+
+import Prevalent.Prevalent;
 import ViewHolder.ProductViewHolder;
 import maes.tech.intentanim.CustomIntent;
 
 public class Products_List extends AppCompatActivity {
 
-    private DatabaseReference ProductsRef;
+    private DatabaseReference ProductsRef, RecentLyViewed;
     private RecyclerView recyclerView;
 
     RecyclerView.LayoutManager layoutManager;
@@ -32,6 +40,7 @@ public class Products_List extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products);
 
+        RecentLyViewed = FirebaseDatabase.getInstance().getReference().child("RecentViews");
         ProductsRef = FirebaseDatabase.getInstance().getReference().child("Products").child("Phones");
         recyclerView = findViewById(R.id.recycler_menu);
         recyclerView.setHasFixedSize(true);
@@ -63,6 +72,42 @@ public class Products_List extends AppCompatActivity {
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+
+                                String cat = model.getCategory();
+                                String b = model.getDescription();
+                                String c = model.getProduct_Name();
+                                String d= model.getProduct_Image();
+                                String e = model.getPrice();
+                                String id = model.getPid();
+                                String f = model.getDate();
+                                String g = model.getTime();
+
+                                String saveCurrentTime , saveCurrentDate;
+                                Calendar calForDate = Calendar.getInstance();
+                                SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd yyyy");
+                                saveCurrentDate = currentDate.format(calForDate.getTime());
+
+                                SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
+                                saveCurrentTime = currentTime.format(calForDate.getTime());
+
+                                final HashMap<String, Object> cartMap = new HashMap<>();
+                                cartMap.put("pid", id);
+                                cartMap.put("Product_Name", c);
+                                cartMap.put("Description", b);
+                                cartMap.put("category", cat);
+                                cartMap.put("Date", f);
+                                cartMap.put("Time", g);
+                                cartMap.put("price", e);
+                                cartMap.put("Product_Image", d);
+
+                                String RandomKey = saveCurrentDate+ saveCurrentTime+ Prevalent.CurrentOnlineUser.getPhone();
+
+                                RecentLyViewed.child(Prevalent.CurrentOnlineUser.getPhone()).child(id).updateChildren(cartMap)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                            }
+                                        });
                                 Intent intent = new Intent(Products_List.this, ProductDetailsActivity.class);
                                 intent.putExtra("pid", model.getPid());
                                 startActivity(intent);

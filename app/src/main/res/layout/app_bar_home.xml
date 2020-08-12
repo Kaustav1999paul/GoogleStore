@@ -17,17 +17,17 @@
             android:elevation="0dp"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#FFFFFF"
+            android:background="@color/lightBack"
             android:scrollbarStyle="insideInset"
             android:fadeScrollbars="true"
             app:layout_scrollFlags="scroll"
             app:popupTheme="@style/AppTheme.PopupOverlay">
             <pl.droidsonroids.gif.GifTextView
                 android:layout_width="40dp"
-                android:layout_height="28dp"
+                android:layout_height="40dp"
                 android:layout_marginLeft="108dp"
                 android:adjustViewBounds="true"
-                android:background="@drawable/gg" />
+                android:background="@drawable/circle_logo" />
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
     <include layout="@layout/content_home" />

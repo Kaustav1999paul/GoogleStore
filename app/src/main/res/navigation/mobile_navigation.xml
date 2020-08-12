@@ -41,5 +41,11 @@
         android:label="Maps"
         tools:layout="@layout/fragment_maps"
        />
+    <fragment
+        android:id="@+id/about"
+        android:name="com.example.googlestore.AboutUs"
+        android:label="About Us"
+        tools:layout="@layout/fragment_about_us"
+        />
 
 </navigation>

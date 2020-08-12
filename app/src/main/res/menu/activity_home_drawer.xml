@@ -17,21 +17,37 @@
             android:id="@+id/account"
             android:icon="@drawable/sett"
             android:title="Account Settings" />
-        <item
-            android:id="@+id/help"
-            android:icon="@drawable/help"
-            android:title="Help" />
+
     </group>
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/gmail"
-            android:icon="@drawable/gmail"
-            android:title="Open G-mail app" />
-        <item
-            android:id="@+id/map"
-            android:icon="@drawable/map"
-            android:title="Open Maps app" />
-    </group>
+    <item android:title="Help">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/help"
+                    android:icon="@drawable/help"
+                    android:title="Contact Us" />
+                <item
+                    android:id="@+id/about"
+                    android:icon="@drawable/circle_logo"
+                    android:title="About Us" />
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="Open other apps">
+        <menu>
+        <group android:checkableBehavior="single">
+            <item
+                android:id="@+id/gmail"
+                android:icon="@drawable/gmail"
+                android:title="Open G-mail app" />
+            <item
+                android:id="@+id/map"
+                android:icon="@drawable/map"
+                android:title="Open Maps app" />
+        </group>
+        </menu>
+    </item>
 
 </menu>

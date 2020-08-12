@@ -26,6 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.tapadoo.alerter.Alerter;
 
 import java.util.HashMap;
 
@@ -50,6 +51,11 @@ public class RegisterActivity extends AppCompatActivity {
         gallerIntent.setType("image/");
         startActivityForResult(gallerIntent, abc);
 
+        loadingBar.setTitle("Please Wait");
+        loadingBar.setMessage("We are Setting your avatar");
+        loadingBar.setCanceledOnTouchOutside(false);
+        loadingBar.show();
+
     }
 
     @Override
@@ -58,6 +64,35 @@ public class RegisterActivity extends AppCompatActivity {
         if (requestCode == abc && resultCode == RESULT_OK && data != null){
             imageUri = data.getData();
             selectimage.setImageURI(imageUri);
+
+            final StorageReference filePath = storageReference.child(imageUri.getLastPathSegment()+ ".jpg");
+            final UploadTask uploadTask = filePath.putFile(imageUri);
+            uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+
+                    Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                        @Override
+                        public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                            downloadUrl = filePath.getDownloadUrl().toString();
+                            return filePath.getDownloadUrl();
+                        }
+                    }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Uri> task) {
+                            if (task.isSuccessful()){
+                                downloadUrl = task.getResult().toString();
+                                loadingBar.dismiss();
+                            }else {
+                                String m = task.getException().getMessage();
+                                Toast.makeText(RegisterActivity.this, "Error: "+ m, Toast.LENGTH_SHORT).show();
+                                loadingBar.dismiss();
+                            }
+                        }
+                    });
+                }
+            });
+
         }
     }
 
@@ -99,37 +134,9 @@ public class RegisterActivity extends AppCompatActivity {
                 final String phone = InputPhoneNo.getText().toString();
                 final String password = InputPassword.getText().toString();
                 final String address = InputAddress.getText().toString();
-
-                final StorageReference filePath = storageReference.child(imageUri.getLastPathSegment()+ ".jpg");
-                final UploadTask uploadTask = filePath.putFile(imageUri);
-                uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                        Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-                            @Override
-                            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                                downloadUrl = filePath.getDownloadUrl().toString();
-                                return filePath.getDownloadUrl();
-                            }
-                        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Uri> task) {
-                                if (task.isSuccessful()){
-                                    downloadUrl = task.getResult().toString();
-                                    Validate(name, phone , password, address, downloadUrl);
-                                }else {
-                                    String m = task.getException().getMessage();
-                                    Toast.makeText(RegisterActivity.this, "Error: "+ m, Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-                    }
-                });
-
-
+                Validate(name, phone , password, address, downloadUrl);
             }
         });
-
         selectimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,15 +147,60 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void Validate(String name, String phone, String password, String address, String downloadUrl) {
         if (TextUtils.isEmpty(name)){
-            Toast.makeText(this, "Name is required", Toast.LENGTH_SHORT).show();
+            Alerter.create(this)
+                    .setTitle("Required")
+                    .setText("Name field is empty")
+                    .setIcon(R.drawable.call)
+                    .setDuration(3000)
+                    .enableProgress(true)
+                    .setProgressColorRes(R.color.pro)
+                    .setBackgroundColorRes(R.color.login)
+                    .show();
+            loadingBar.dismiss();
         }else if (TextUtils.isEmpty(phone)){
-            Toast.makeText(this, "Phone number is required", Toast.LENGTH_SHORT).show();
+            Alerter.create(this)
+                    .setTitle("Required")
+                    .setText("Phone field is empty")
+                    .setIcon(R.drawable.call)
+                    .setDuration(3000)
+                    .enableProgress(true)
+                    .setProgressColorRes(R.color.pro)
+                    .setBackgroundColorRes(R.color.login)
+                    .show();
+            loadingBar.dismiss();
         }else if (TextUtils.isEmpty(password)){
-            Toast.makeText(this, "Password is required", Toast.LENGTH_SHORT).show();
+            Alerter.create(this)
+                    .setTitle("Required")
+                    .setText("Password field is empty")
+                    .setIcon(R.drawable.lock)
+                    .setDuration(3000)
+                    .enableProgress(true)
+                    .setProgressColorRes(R.color.pro)
+                    .setBackgroundColorRes(R.color.login)
+                    .show();
+            loadingBar.dismiss();
         }else if (TextUtils.isEmpty(address)){
-            Toast.makeText(this, "Address is required", Toast.LENGTH_SHORT).show();
+            Alerter.create(this)
+                    .setTitle("Required")
+                    .setText("Address field is empty")
+                    .setIcon(R.drawable.ic_location)
+                    .setDuration(3000)
+                    .enableProgress(true)
+                    .setProgressColorRes(R.color.pro)
+                    .setBackgroundColorRes(R.color.login)
+                    .show();
+            loadingBar.dismiss();
         }else if (TextUtils.isEmpty(downloadUrl)){
-            Toast.makeText(this, "Avatar photo is required", Toast.LENGTH_SHORT).show();
+            Alerter.create(this)
+                    .setTitle("Required")
+                    .setText("Avatar not selected")
+                    .setIcon(R.drawable.ic_account)
+                    .setDuration(3000)
+                    .enableProgress(true)
+                    .setProgressColorRes(R.color.pro)
+                    .setBackgroundColorRes(R.color.login)
+                    .show();
+            loadingBar.dismiss();
         }else {
             ValidatePhoneNo(name, phone , password, address, downloadUrl);
         }

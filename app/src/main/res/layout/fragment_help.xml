@@ -4,19 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Help"
-    android:background="#FFFFFF"
+    android:background="@color/lightBack"
     android:orientation="vertical">
 
     <pl.droidsonroids.gif.GifImageView
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="340dp"
+        android:layout_height="200dp"
         android:layout_gravity="center"
-        android:background="@drawable/helppost"/>
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/contact_us"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#2C2C2C"
+        android:textColor="@color/lightText"
         android:fontFamily="@font/comfortaa"
         android:textSize="30dp"
         android:paddingLeft="20dp"
@@ -39,7 +42,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="7602383889"
+            android:text="1800 258 2554"
             android:layout_marginLeft="20dp"
             android:fontFamily="@font/comfortaa"
             android:textColor="#FF9800"
@@ -94,4 +97,11 @@
     </LinearLayout>
 
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/outline_background"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="20dp"
+        />
 </LinearLayout>

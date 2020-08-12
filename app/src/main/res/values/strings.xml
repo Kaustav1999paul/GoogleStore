@@ -13,6 +13,8 @@
     <string name="home_second">Home Second</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="text">Light Mode</string>
+
     <string-array name="quantity">
         <item>1</item>
         <item>2</item>

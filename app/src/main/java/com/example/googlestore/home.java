@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
@@ -20,21 +21,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 import Model.Accessories;
 import Model.Fabrics;
 import Model.Home;
 import Model.Products;
+import Model.Recent;
 import Prevalent.Prevalent;
 import ViewHolder.AccessoriesViewHolder;
 import ViewHolder.ProductViewHolder;
@@ -52,10 +60,11 @@ public class home extends Fragment {
 
     private ViewPager2 viewPager2;
     private Handler sliderHandler = new Handler();
-    private ImageView ph, stadia ,daydream, pixelBook, google, assistant, personImage;
-    private RecyclerView accessories_list, fabric_list, home_list;
-    private DatabaseReference AccessoriesRef, FabricRef, HomeRef;
+    private ImageView ph, pixelBook, google, assistant, personImage;
+    private RecyclerView accessories_list, fabric_list, home_list, recent_list;
+    private DatabaseReference AccessoriesRef, FabricRef, HomeRef, RecentLyViewed;
     private TextView personName;
+    private CardView searchCard;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -72,7 +81,18 @@ public class home extends Fragment {
         home_list= view.findViewById(R.id.home_list);
         personName = view.findViewById(R.id.personName);
         personImage = view.findViewById(R.id.personImage);
+        searchCard = view.findViewById(R.id.searchCard);
+        recent_list = view.findViewById(R.id.recent_list);
 //        +++++++++++++++++++++++++++++ Assign ID to variables +++++++++++++++++++++++++++++++++++++
+
+        searchCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), SearchActivity.class);
+                ActivityOptionsCompat compat = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), searchCard, "sea");
+                startActivity(intent, compat.toBundle());
+            }
+        });
 
         String im = Prevalent.CurrentOnlineUser.getPhoto();
         Glide.with(personImage).load(im).into(personImage);
@@ -138,16 +158,17 @@ public class home extends Fragment {
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
                 sliderHandler.removeCallbacks(slideRunnable);
-                sliderHandler.postDelayed(slideRunnable, 2000);
+                sliderHandler.postDelayed(slideRunnable, 3000);
             }
         });
         //        =========================== Banner Slider ===================================
 
 
+//        =================================== Layout Setting ==================================
         accessories_list.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false);
-//        linearLayoutManager.setStackFromEnd(true);
-//        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        linearLayoutManager.setReverseLayout(true);
         accessories_list.setLayoutManager(linearLayoutManager);
 
         fabric_list.setHasFixedSize(true);
@@ -162,15 +183,66 @@ public class home extends Fragment {
         linearLayoutManager.setReverseLayout(true);
         home_list.setLayoutManager(linear);
 
+        recent_list.setHasFixedSize(true);
+        LinearLayoutManager linea = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false);
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        recent_list.setLayoutManager(linea);
+
+//        =================================== Layout Setting ==================================
+
+//        ++++++++++++++++++++++++++++++++++ References ++++++++++++++++++++++++++++++++++++++++++++
         AccessoriesRef = FirebaseDatabase.getInstance().getReference().child("Products").child("Accessories");
         FabricRef = FirebaseDatabase.getInstance().getReference().child("Products").child("Fabrics");
         HomeRef = FirebaseDatabase.getInstance().getReference().child("Products").child("Home");
+        RecentLyViewed = FirebaseDatabase.getInstance().getReference().child("RecentViews").child(Prevalent.CurrentOnlineUser.getPhone());
+//        ++++++++++++++++++++++++++++++++++ References ++++++++++++++++++++++++++++++++++++++++++++
         return view;
     }
 
     @Override
     public void onStart() {
         super.onStart();
+
+//        ++++++++++++++++++++++++++++++++++++ Recent Views ++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        FirebaseRecyclerOptions<Recent> optionsA = new FirebaseRecyclerOptions.Builder<Model.Recent>()
+                .setQuery(RecentLyViewed, Model.Recent.class)
+                .build();
+        FirebaseRecyclerAdapter<Recent, AccessoriesViewHolder> adapterA =
+                new FirebaseRecyclerAdapter<Model.Recent, AccessoriesViewHolder>(optionsA) {
+                    @Override
+                    protected void onBindViewHolder(@NonNull final AccessoriesViewHolder holder, int position, @NonNull final Model.Recent model) {
+                        holder.txtProductName.setText(model.getProduct_Name());
+                        holder.txtProductPrice.setText(model.getPrice());
+                        Glide.with(holder.imageView).load(model.getProduct_Image()).into(holder.imageView);
+
+                        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(getContext(), ProductDetailsActivity.class);
+                                intent.putExtra("pid", model.getPid());
+                                startActivity(intent);
+                                CustomIntent.customType(getContext(), "bottom-to-up");
+                            }
+                        });
+                    }
+                    @NonNull
+                    @Override
+                    public AccessoriesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.accessories_layout, parent,false);
+                        AccessoriesViewHolder holder = new AccessoriesViewHolder(view);
+                        return holder;
+                    }
+                };
+        recent_list.setAdapter(adapterA);
+        adapterA.startListening();
+
+//        ++++++++++++++++++++++++++++++++++++ Recent Views ++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
 // ++++++++++++++++++++++++++++++++++++++++ For Accessories +++++++++++++++++++++++++++++++++++++++++++++++++++++++
         FirebaseRecyclerOptions<Accessories> options = new FirebaseRecyclerOptions.Builder<Model.Accessories>()
                 .setQuery(AccessoriesRef, Model.Accessories.class)
@@ -187,6 +259,43 @@ public class home extends Fragment {
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+
+                                String cat = model.getCategory();
+                                String b = model.getDescription();
+                                String c = model.getProduct_Name();
+                                String d= model.getProduct_Image();
+                                String e = model.getPrice();
+                                String id = model.getPid();
+                                String f = model.getDate();
+                                String g = model.getTime();
+
+                                String saveCurrentTime , saveCurrentDate;
+                                Calendar calForDate = Calendar.getInstance();
+                                SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd yyyy");
+                                saveCurrentDate = currentDate.format(calForDate.getTime());
+
+                                SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
+                                saveCurrentTime = currentTime.format(calForDate.getTime());
+
+                                final HashMap<String, Object> cartMap = new HashMap<>();
+                                cartMap.put("pid", id);
+                                cartMap.put("Product_Name", c);
+                                cartMap.put("Description", b);
+                                cartMap.put("category", cat);
+                                cartMap.put("Date", f);
+                                cartMap.put("Time", g);
+                                cartMap.put("price", e);
+                                cartMap.put("Product_Image", d);
+                               String RandomKey = saveCurrentDate+ saveCurrentTime+Prevalent.CurrentOnlineUser.getPhone();
+
+                               RecentLyViewed.child(id).updateChildren(cartMap)
+                                       .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                           @Override
+                                           public void onComplete(@NonNull Task<Void> task) {
+
+                                           }
+                                       });
+
                                 Intent intent = new Intent(getContext(), ProductDetailsActivity.class);
                                 intent.putExtra("pid", model.getPid());
                                 startActivity(intent);
@@ -223,6 +332,42 @@ public class home extends Fragment {
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+
+                                String cat = model.getCategory();
+                                String b = model.getDescription();
+                                String c = model.getProduct_Name();
+                                String d= model.getProduct_Image();
+                                String e = model.getPrice();
+                                String id = model.getPid();
+                                String f = model.getDate();
+                                String g = model.getTime();
+
+                                String saveCurrentTime , saveCurrentDate;
+                                Calendar calForDate = Calendar.getInstance();
+                                SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd yyyy");
+                                saveCurrentDate = currentDate.format(calForDate.getTime());
+
+                                SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
+                                saveCurrentTime = currentTime.format(calForDate.getTime());
+
+                                final HashMap<String, Object> cartMap = new HashMap<>();
+                                cartMap.put("pid", id);
+                                cartMap.put("Product_Name", c);
+                                cartMap.put("Description", b);
+                                cartMap.put("category", cat);
+                                cartMap.put("Date", f);
+                                cartMap.put("Time", g);
+                                cartMap.put("price", e);
+                                cartMap.put("Product_Image", d);
+
+                                String RandomKey = saveCurrentDate+ saveCurrentTime+Prevalent.CurrentOnlineUser.getPhone();
+
+                                RecentLyViewed.child(id).updateChildren(cartMap)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                            }
+                                        });
                                 Intent intenta = new Intent(getContext(), ProductDetailsActivity.class);
                                 intenta.putExtra("pid", model.getPid());
                                 startActivity(intenta);
@@ -258,6 +403,42 @@ public class home extends Fragment {
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+
+                                String cat = model.getCategory();
+                                String b = model.getDescription();
+                                String c = model.getProduct_Name();
+                                String d= model.getProduct_Image();
+                                String e = model.getPrice();
+                                String id = model.getPid();
+                                String f = model.getDate();
+                                String g = model.getTime();
+
+                                String saveCurrentTime , saveCurrentDate;
+                                Calendar calForDate = Calendar.getInstance();
+                                SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd yyyy");
+                                saveCurrentDate = currentDate.format(calForDate.getTime());
+
+                                SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
+                                saveCurrentTime = currentTime.format(calForDate.getTime());
+
+                                final HashMap<String, Object> cartMap = new HashMap<>();
+                                cartMap.put("pid", id);
+                                cartMap.put("Product_Name", c);
+                                cartMap.put("Description", b);
+                                cartMap.put("category", cat);
+                                cartMap.put("Date", f);
+                                cartMap.put("Time", g);
+                                cartMap.put("price", e);
+                                cartMap.put("Product_Image", d);
+
+                                String RandomKey = saveCurrentDate+ saveCurrentTime+Prevalent.CurrentOnlineUser.getPhone();
+
+                                RecentLyViewed.child(id).updateChildren(cartMap)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                            }
+                                        });
                                 Intent intenta = new Intent(getContext(), ProductDetailsActivity.class);
                                 intenta.putExtra("pid", model.getPid());
                                 startActivity(intenta);
