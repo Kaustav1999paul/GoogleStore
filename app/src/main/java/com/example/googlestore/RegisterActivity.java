@@ -10,7 +10,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,16 +33,17 @@ import com.tapadoo.alerter.Alerter;
 import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import maes.tech.intentanim.CustomIntent;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private FloatingActionButton CreateAccountButton;
+    private Button CreateAccountButton;
     private EditText InputPhoneNo , InputPassword, InputName, InputAddress;
     private TextView AlreadyAUser;
     private ProgressDialog loadingBar;
     private static final int abc = 1;
     private Uri imageUri;
-    private CircleImageView selectimage;
+    private ImageView selectimage;
     private StorageReference storageReference;
     private String downloadUrl;
 
@@ -102,7 +105,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 //  ++++++++++++++++++++++++++++++++++++  Assigning the value  +++++++++++++++++++++++++++++++++++++
         AlreadyAUser = (TextView) findViewById(R.id.alreadyAUser);
-        CreateAccountButton = (FloatingActionButton) findViewById(R.id.RegisterButton);
+        CreateAccountButton = findViewById(R.id.RegisterButton);
         InputName = (EditText) findViewById(R.id.Name);
         InputPhoneNo = (EditText) findViewById(R.id.Phone);
         InputPassword = (EditText) findViewById(R.id.Password);
@@ -117,8 +120,7 @@ public class RegisterActivity extends AppCompatActivity {
         AlreadyAUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RegisterActivity.this, UserLogin.class);
-                startActivity(intent);
+               finish();
             }
         });
 
@@ -143,6 +145,12 @@ public class RegisterActivity extends AppCompatActivity {
                 Addphoto();
             }
         });
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        CustomIntent.customType(this, "right-to-left");
     }
 
     private void Validate(String name, String phone, String password, String address, String downloadUrl) {

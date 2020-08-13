@@ -21,6 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import Model.Users;
 import Prevalent.Prevalent;
 import io.paperdb.Paper;
+import maes.tech.intentanim.CustomIntent;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -47,6 +48,7 @@ public class WelcomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(WelcomeActivity.this, UserLogin.class);
                 startActivity(intent);
+                CustomIntent.customType(WelcomeActivity.this, "left-to-right");
             }
         });
 

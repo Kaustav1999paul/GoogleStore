@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -27,10 +28,11 @@ import com.tapadoo.alerter.Alerter;
 import Model.Users;
 import Prevalent.Prevalent;
 import io.paperdb.Paper;
+import maes.tech.intentanim.CustomIntent;
 
 public class UserLogin extends AppCompatActivity {
 
-    private FloatingActionButton LoginButton;
+    private Button LoginButton;
     private EditText InputNumber , InputPassword;
     private TextView newUser ;
     private ProgressDialog loadingBar;
@@ -47,7 +49,7 @@ public class UserLogin extends AppCompatActivity {
         view = findViewById(android.R.id.content);
 //  ++++++++++++++++++++++++++++++++++++  Assigning the value  +++++++++++++++++++++++++++++++++++++
         newUser = (TextView) findViewById(R.id.new_User);
-        LoginButton = (FloatingActionButton) findViewById(R.id.LoginButton);
+        LoginButton = findViewById(R.id.LoginButton);
         InputNumber = (EditText) findViewById(R.id.Login_phoneNumber);
         InputPassword = (EditText) findViewById(R.id.Login_password);
         loadingBar = new ProgressDialog(this);
@@ -71,6 +73,7 @@ public class UserLogin extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(UserLogin.this, RegisterActivity.class);
                 startActivity(intent);
+                CustomIntent.customType(UserLogin.this, "left-to-right");
             }
         });
         LoginButton.setOnClickListener(new View.OnClickListener() {
@@ -79,6 +82,12 @@ public class UserLogin extends AppCompatActivity {
                 LoginUser();
             }
         });
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        CustomIntent.customType(UserLogin.this, "right-to-left");
     }
 
     private void LoginUser() {
@@ -114,6 +123,7 @@ public class UserLogin extends AppCompatActivity {
             AllowAccessToAccount(phone, password);
         }
     }
+
 
     private void AllowAccessToAccount(final String phone, final String password) {
 
