@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -33,6 +34,7 @@ public class Products_List extends AppCompatActivity {
 
     private DatabaseReference ProductsRef, RecentLyViewed;
     private RecyclerView recyclerView;
+    private RelativeLayout back;
 
     RecyclerView.LayoutManager layoutManager;
     @Override
@@ -46,6 +48,13 @@ public class Products_List extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+        back = findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     @Override

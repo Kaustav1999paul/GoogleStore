@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +37,7 @@ public class FinalCartActivity extends AppCompatActivity {
     private Button NextProcessButton;
     private TextView txttotalAmount, tempCartaa;
     private int overTotalPrice = 0;
-
+    private RelativeLayout back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +50,15 @@ public class FinalCartActivity extends AppCompatActivity {
         NextProcessButton = findViewById(R.id.cart_continue_button);
         txttotalAmount = findViewById(R.id.total_cart_amount);
         tempCartaa = findViewById(R.id.tempCartaa);
+        back = findViewById(R.id.back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                CustomIntent.customType(FinalCartActivity.this, "bottom-to-up");
+            }
+        });
 
         final View parentLayout = findViewById(android.R.id.content);
 

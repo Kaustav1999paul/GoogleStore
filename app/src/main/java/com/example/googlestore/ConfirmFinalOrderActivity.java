@@ -36,6 +36,7 @@ import java.util.HashMap;
 
 import Prevalent.Prevalent;
 import de.hdodenhof.circleimageview.CircleImageView;
+import maes.tech.intentanim.CustomIntent;
 
 public class ConfirmFinalOrderActivity extends AppCompatActivity implements PaymentResultListener{
 
@@ -45,6 +46,7 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity implements Paym
     private FloatingActionButton confirmOrderBtn;
     private Dialog conf;
     private CircleImageView aaav;
+    private ImageView editAdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +54,16 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity implements Paym
         setContentView(R.layout.activity_confirm_final_order);
 
 
-
+        editAdd = findViewById(R.id.edit_Add);
         aaav = findViewById(R.id.aaav);
+        editAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ConfirmFinalOrderActivity.this, addressEdit.class);
+                startActivity(intent);
+                CustomIntent.customType(ConfirmFinalOrderActivity.this, "bottom-to-up");
+            }
+        });
 
         conf = new Dialog(this);
         totalAmount = getIntent().getStringExtra("Total price: ");

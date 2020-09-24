@@ -12,106 +12,107 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddnewHomeActivity"></activity>
+        <activity android:name=".addressEdit"></activity>
+        <activity android:name=".AddnewHomeActivity" />
         <activity android:name=".AddnewFabricsActivity" />
         <activity android:name=".AddnewAccessoriesActivity" />
         <activity
             android:name=".AdminUserProductsActivity"
-            android:theme="@style/FullScreen"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/FullScreen" />
         <activity
             android:name=".AdminNewOrderActivity"
-            android:theme="@style/FullScreen"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/FullScreen" />
         <activity android:name=".Test" />
         <activity
             android:name=".FinalCartActivity"
-            android:theme="@style/FullScreen"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/FullScreen" />
         <activity
             android:name=".ConfirmFinalOrderActivity"
-            android:theme="@style/FullScreen"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/FullScreen" />
         <activity
             android:name=".ProductDetailsActivity"
-            android:theme="@style/ProductDetails"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/ProductDetails" />
         <activity
             android:name=".PixelBookGo"
-            android:theme="@style/FullScreen"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/FullScreen" />
         <activity
             android:name=".DayDream"
-            android:theme="@style/FullScreen"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/FullScreen" />
         <activity
             android:name=".Stadia"
-            android:theme="@style/FullScreen"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/FullScreen" />
         <activity
             android:name=".Products_List"
-            android:theme="@style/Nav"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Nav" />
         <activity
             android:name=".HomeActivity"
-            android:label="@string/title_activity_home"
-            android:theme="@style/Nav"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
+            android:label="@string/title_activity_home"
+            android:screenOrientation="portrait"
+            android:theme="@style/Nav" />
         <activity
             android:name=".SearchActivity"
-            android:theme="@style/FullScreen"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/FullScreen" />
         <activity
             android:name=".AddNewProductActivity"
-            android:theme="@style/FullScreen"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/FullScreen" />
         <activity
             android:name=".AdminCategoryActivity"
-            android:theme="@style/FullScreen"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/FullScreen" />
         <activity
             android:name=".Admin_Register_Activity"
-            android:theme="@style/FullScreen"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/FullScreen" />
         <activity
             android:name=".Admin_LoginActivity"
-            android:theme="@style/FullScreen"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/FullScreen" />
         <activity
             android:name=".WelcomeActivity"
-            android:theme="@style/Welcome"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Welcome" />
         <activity
             android:name=".UserLogin"
-            android:theme="@style/RegistrationTheme"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/RegistrationTheme" />
         <activity
             android:name=".RegisterActivity"
-            android:theme="@style/RegistrationTheme"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/RegistrationTheme" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/SplashTheme"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -132,6 +133,7 @@
             android:resource="@array/preloaded_fonts" />
         <meta-data
             android:name="com.razorpay.ApiKey"
-            android:value="rzp_test_38FcTJqmfbDw5K"/>
+            android:value="rzp_test_38FcTJqmfbDw5K" />
     </application>
+
 </manifest>

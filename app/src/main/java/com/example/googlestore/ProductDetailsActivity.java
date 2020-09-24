@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,6 +49,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     String[] quantity;
     private String a, b;
     private Button addToCartBtn;
+    private RelativeLayout back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +64,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         productName = (TextView) findViewById(R.id.ProductName);
         productDescription = (TextView) findViewById(R.id.product_details);
         sp = findViewById(R.id.spinner);
+        back = findViewById(R.id.back);
         quantity = getResources().getStringArray(R.array.quantity);
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, quantity);
@@ -78,6 +81,14 @@ public class ProductDetailsActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                CustomIntent.customType(ProductDetailsActivity.this, "up-to-bottom");
             }
         });
 

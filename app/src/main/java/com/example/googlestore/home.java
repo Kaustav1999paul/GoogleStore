@@ -63,7 +63,7 @@ public class home extends Fragment {
     private ImageView ph, pixelBook, google, assistant, personImage;
     private RecyclerView accessories_list, fabric_list, home_list, recent_list;
     private DatabaseReference AccessoriesRef, FabricRef, HomeRef, RecentLyViewed;
-    private TextView personName;
+    private TextView personName, tempView;
     private CardView searchCard;
 
     @Override
@@ -83,6 +83,7 @@ public class home extends Fragment {
         personImage = view.findViewById(R.id.personImage);
         searchCard = view.findViewById(R.id.searchCard);
         recent_list = view.findViewById(R.id.recent_list);
+        tempView = view.findViewById(R.id.tempView);
 //        +++++++++++++++++++++++++++++ Assign ID to variables +++++++++++++++++++++++++++++++++++++
 
         searchCard.setOnClickListener(new View.OnClickListener() {
@@ -213,6 +214,9 @@ public class home extends Fragment {
                 new FirebaseRecyclerAdapter<Model.Recent, AccessoriesViewHolder>(optionsA) {
                     @Override
                     protected void onBindViewHolder(@NonNull final AccessoriesViewHolder holder, int position, @NonNull final Model.Recent model) {
+
+                        tempView.setVisibility(View.INVISIBLE);
+
                         holder.txtProductName.setText(model.getProduct_Name());
                         holder.txtProductPrice.setText(model.getPrice());
                         Glide.with(holder.imageView).load(model.getProduct_Image()).into(holder.imageView);

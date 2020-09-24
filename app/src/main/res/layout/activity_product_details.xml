@@ -227,7 +227,7 @@
                         android:layout_marginBottom="30dp"
                         android:fontFamily="@font/comfortaa"
                         android:textColor="#FFFFFF"
-                        android:textSize="16dp"
+                        android:textSize="14dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.498"
                         app:layout_constraintStart_toStartOf="parent"
@@ -237,4 +237,18 @@
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>
+    <RelativeLayout
+        android:id="@+id/back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:gravity="center"
+        android:elevation="10dp"
+        android:background="@drawable/custom_back_button">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_back_ios"/>
+    </RelativeLayout>
 </RelativeLayout>
