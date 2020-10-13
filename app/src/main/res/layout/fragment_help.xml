@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Help"
     android:background="@color/lightBack"
     android:orientation="vertical">
@@ -23,6 +24,7 @@
         android:fontFamily="@font/comfortaa"
         android:textSize="30dp"
         android:paddingLeft="20dp"
+        android:gravity="center"
         android:textStyle="bold"
         android:layout_marginTop="20dp"
         android:text="24x7 Service"
@@ -47,8 +49,19 @@
             android:fontFamily="@font/comfortaa"
             android:textColor="#FF9800"
             android:textSize="16dp"
+            android:layout_weight="1"
             android:textStyle="bold"
             android:layout_gravity="center"/>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/call"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:src="@drawable/call"
+            android:tint="#FF9800"
+            android:backgroundTint="#FFFFFF"
+            app:borderWidth="0px"
+            app:fabCustomSize="35dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -66,12 +79,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="googlehelp@gmail.com"
+            android:layout_weight="1"
+
             android:layout_marginLeft="20dp"
             android:fontFamily="@font/comfortaa"
             android:textColor="#FF9800"
             android:textSize="16dp"
             android:textStyle="bold"
             android:layout_gravity="center"/>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+           android:id="@+id/mail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:src="@drawable/ic_email"
+            android:tint="#FF9800"
+            android:backgroundTint="#FFFFFF"
+            app:borderWidth="0px"
+            app:fabCustomSize="35dp"/>
     </LinearLayout>
     <LinearLayout
         android:layout_marginBottom="10dp"
@@ -88,12 +113,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="USA, 68 Street"
+            android:layout_weight="1"
+
             android:layout_marginLeft="20dp"
             android:fontFamily="@font/comfortaa"
             android:textColor="#FF9800"
             android:textSize="16dp"
             android:textStyle="bold"
             android:layout_gravity="center"/>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/loca"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:src="@drawable/ic_location"
+            android:tint="#FF9800"
+            android:backgroundTint="#FFFFFF"
+            app:borderWidth="0px"
+            app:fabCustomSize="35dp"/>
     </LinearLayout>
 
 

@@ -51,7 +51,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private TextView userName;
-    private Switch themeToggle;
+//    private Switch themeToggle;
     SharedPreferences sharedPreferences = null;
 
     @Override
@@ -96,40 +96,40 @@ public class HomeActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         View headerView = navigationView.getHeaderView(0);
-        themeToggle = headerView.findViewById(R.id.themeToggle);
-
-
-        sharedPreferences = getSharedPreferences("night", 0);
-                Boolean booleanValue = sharedPreferences.getBoolean("night_mode", false);
-                if (booleanValue){
-//                   Default Dark theme
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                themeToggle.setChecked(true);
-                }else {
-//                   Default Light Theme
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    themeToggle.setChecked(false);
-                }
-
-                themeToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-        @Override
-        public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b){
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                themeToggle.setChecked(true);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean("night_mode", true);
-                editor.commit();
-                }
-                else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                themeToggle.setChecked(false);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean("night_mode", false);
-                editor.commit();
-                }
-                }
-                });
+//        themeToggle = headerView.findViewById(R.id.themeToggle);
+//
+//
+//        sharedPreferences = getSharedPreferences("night", 0);
+//                Boolean booleanValue = sharedPreferences.getBoolean("night_mode", false);
+//                if (booleanValue){
+////                   Default Dark theme
+//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+//                themeToggle.setChecked(true);
+//                }else {
+////                   Default Light Theme
+//                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+//                    themeToggle.setChecked(false);
+//                }
+//
+//                themeToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//        @Override
+//        public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                if (b){
+//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+//                themeToggle.setChecked(true);
+//                SharedPreferences.Editor editor = sharedPreferences.edit();
+//                editor.putBoolean("night_mode", true);
+//                editor.commit();
+//                }
+//                else {
+//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+//                themeToggle.setChecked(false);
+//                SharedPreferences.Editor editor = sharedPreferences.edit();
+//                editor.putBoolean("night_mode", false);
+//                editor.commit();
+//                }
+//                }
+//                });
 
 
     }

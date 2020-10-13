@@ -17,31 +17,31 @@
         android:background="@drawable/logo"
         android:layout_marginTop="30dp"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="20dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/comfortaa"
-            android:textSize="15dp"
-            android:layout_weight="1"
-            android:textStyle="bold"
-            android:text="Dark theme"
-            android:textColor="@color/lightText"/>
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:paddingHorizontal="20dp"-->
+<!--        android:gravity="center"-->
+<!--        android:orientation="horizontal">-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/comfortaa"-->
+<!--            android:textSize="15dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:textStyle="bold"-->
+<!--            android:text="Dark theme"-->
+<!--            android:textColor="@color/lightText"/>-->
 
-        <Switch
-            android:id="@+id/themeToggle"
-            android:checked="false"
-            android:thumb="@drawable/thumb1"
-            android:track="@drawable/track"
-            android:layout_margin="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+<!--        <Switch-->
+<!--            android:id="@+id/themeToggle"-->
+<!--            android:checked="false"-->
+<!--            android:thumb="@drawable/thumb1"-->
+<!--            android:track="@drawable/track"-->
+<!--            android:layout_margin="10dp"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"/>-->
+<!--    </LinearLayout>-->
 
 <!--    <TextView-->
 <!--        android:layout_width="match_parent"-->
